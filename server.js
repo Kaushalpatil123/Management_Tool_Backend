@@ -9,7 +9,7 @@ const connectDB = require("./config/db");
 // const standardRoutes = require("./routes/standardRoutes")
 // const fileRoutes = require("./routes/fileRoutes")
 const leadRoutes = require("./routes/leadRoutes")
-
+const quoteRoutes = require("./routes/quoteRoutes");
 require("dotenv").config();
 
 const app = express();
@@ -23,6 +23,8 @@ app.use((req, res, next) => {
 });
 app.use(express.json());
 
+
+app.use("/api/quotes", quoteRoutes);
 app.use("/api/leads", leadRoutes);
 // app.use('/students/standard', standardRoutes);
 // app.use('/students/subjects', subjectRoutes);
