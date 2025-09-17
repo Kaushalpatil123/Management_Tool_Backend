@@ -3,7 +3,7 @@ const Quote = require("../models/Quote");
 // Create new Quote
 exports.createQuote = async (req, res) => {
   try {
-    const { client, number, year, status, date, expireDate, note, items } = req.body;
+    const { client, year, status, date, expireDate, note, items } = req.body;
 
     // Calculate totals
     let subTotal = 0;
@@ -15,7 +15,6 @@ exports.createQuote = async (req, res) => {
 
     const newQuote = new Quote({
       client,
-      number,
       year,
       status,
       date,
@@ -58,7 +57,7 @@ exports.getQuoteById = async (req, res) => {
 // Update Quote
 exports.updateQuote = async (req, res) => {
   try {
-    const { client, number, year, status, date, expireDate, note, items } = req.body;
+    const { client, year, status, date, expireDate, note, items } = req.body;
 
     let subTotal = 0;
     items.forEach((i) => {
@@ -69,7 +68,7 @@ exports.updateQuote = async (req, res) => {
 
     const updatedQuote = await Quote.findByIdAndUpdate(
       req.params.id,
-      { client, number, year, status, date, expireDate, note, items, subTotal, tax, total },
+      { client, year, status, date, expireDate, note, items, subTotal, tax, total },
       { new: true }
     );
 

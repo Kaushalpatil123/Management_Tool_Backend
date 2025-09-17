@@ -35,17 +35,25 @@ const getLeadById = async (req, res) => {
 // Update Lead
 const updateLead = async (req, res) => {
   try {
+    console.log("Update payload:", req.body);
+
     const updatedLead = await Lead.findByIdAndUpdate(
       req.params.id,
-      req.body,
-      { new: true }
+      { $set: req.body },
+      { new: true, runValidators: true }
     );
-    if (!updatedLead) return res.status(404).json({ message: "Lead not found" });
+
+    if (!updatedLead) {
+      return res.status(404).json({ message: "Lead not found" });
+    }
+
     res.status(200).json(updatedLead);
   } catch (error) {
+    console.error(error);
     res.status(400).json({ message: error.message });
   }
 };
+
 
 // Delete Lead
 const deleteLead = async (req, res) => {

@@ -10,7 +10,6 @@ const itemSchema = new mongoose.Schema({
 const quoteSchema = new mongoose.Schema(
   {
     client: { type: String, required: true },
-    number: { type: String, required: true },
     year: { type: String, required: true },
     status: {
       type: String,
