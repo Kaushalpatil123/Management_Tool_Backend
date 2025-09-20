@@ -2,14 +2,11 @@
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
-// const studentRoutes = require("./routes/studentRoutes");
-// const authRoutes = require("./routes/authRoutes")
-// const subjectRoutes = require("./routes/subjectRoute")
-// const teacherRoutes = require("./routes/teacherRoutes")
-// const standardRoutes = require("./routes/standardRoutes")
-// const fileRoutes = require("./routes/fileRoutes")
+
 const leadRoutes = require("./routes/leadRoutes")
 const quoteRoutes = require("./routes/quoteRoutes");
+const invoiceRoutes = require("./routes/invoiceRoutes.js");
+
 require("dotenv").config();
 
 const app = express();
@@ -26,13 +23,7 @@ app.use(express.json());
 
 app.use("/api/quotes", quoteRoutes);
 app.use("/api/leads", leadRoutes);
-// app.use('/students/standard', standardRoutes);
-// app.use('/students/subjects', subjectRoutes);
-// app.use('/students/teacher', teacherRoutes);   // 👈 your requested route
-// app.use('/students', authRoutes);
-// app.use('/students', studentRoutes);
-// app.use('/uploads', express.static('uploads'));
-// app.use('/files', fileRoutes);
+app.use("/api/invoices", invoiceRoutes);
 
 
 // Start server after DB connects
