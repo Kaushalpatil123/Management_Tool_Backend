@@ -7,6 +7,7 @@ const leadRoutes = require("./routes/leadRoutes")
 const quoteRoutes = require("./routes/quoteRoutes");
 const invoiceRoutes = require("./routes/invoiceRoutes.js");
 const orderRoutes = require("./routes/orderRoutes.js");
+const productRoutes = require("./routes/productRoutes.js");
 
 require("dotenv").config();
 
@@ -27,8 +28,8 @@ app.use("/api/quotes", quoteRoutes);
 app.use("/api/leads", leadRoutes);
 app.use("/api/invoices", invoiceRoutes);
 app.use("/api/orders", orderRoutes);
-
-
+app.use("/uploads", express.static("uploads"));
+app.use("/api/products", productRoutes);
 // Start server after DB connects
 connectDB().then(() => {
   app.listen(PORT, () => {
